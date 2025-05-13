@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% block head_title %}Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}"media="screen">
+    <script src="https://kit.fontawesome.com/d83963ff63.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Do It Django</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/blog/">Blog</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/about_me/">About Me</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown link
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+            </li>
+        </ul>
+        <ui class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Log in</a>
+            </li>
+        </ui>
+    </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">&nbsp<i class="fa-solid fa-right-to-bracket"></i>&nbsp Log in</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-secondary btn-block btn-sm"><i class="fa-regular fa-envelope"></i>&nbsp&nbsp Log in with E-mail</button>
+                        <button type="button" class="btn btn-outline-primary btn-block btn-sm"><i class="fa-brands fa-google"></i>&nbsp&nbsp Log in with Google</button>
+                        <button type="button" class="btn btn-outline-success btn-block btn-sm"><i class="fa-solid fa-n"></i>&nbsp&nbsp Log in with Naver</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-secondary">Sign Up with E-mail</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
