@@ -66,7 +66,7 @@ class TestView(TestCase):
     def test_post_list(self):
         self.assertEqual(Post.objects.count(), 3)
 
-        response = self.clinet.get('/blolg/')
+        response = self.client.get('/blolg/')
         self.assertEqual(response.status_code,200)
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -99,7 +99,7 @@ class TestView(TestCase):
 
         Post.objects.all().delete()
         self.assertEqual(Post.objects.count(),0)
-        response = self.clinet.get('/blog/')
+        response = self.client.get('/blog/')
         soup = BeautifulSoup(response.content, 'html.parser')
         main_area = soup.find('div', id='main-area')
         self.assertIn('아직 게시물이 없습니다', main_area.text)
@@ -192,7 +192,7 @@ class TestView(TestCase):
         self.assertIn('2025', footer.text)
 
     def test_category_page(self):
-        response = self.clinet.get(self.category_programming.get_absolute_url())
+        response = self.client.get(self.category_programming.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 
         soup = BeautifulSoup(response.contet, 'html.parser')
