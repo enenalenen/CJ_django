@@ -8,6 +8,8 @@ class TestView(TestCase):
         self.client = Client()
         self.user_abcd = User.objects.create_user(username='abcd',password='somepassword')
         self.user_qwer = User.objects.create_user(username='qwer',password='somepassword')
+        self.user_abcd.is_staff = True
+        self.user_abcd.save()
 
         self.category_programming = Category.objects.create(name='programming', slug='programming')
         self.category_music = Category.objects.create(name='music', slug='music')
@@ -247,3 +249,16 @@ class TestView(TestCase):
         last_post = Post.objects.last()
         self.assertEqual(last_post.title, "Post Form 만들기")
         self.assertEqual(last_post.author.username, 'qwer')
+
+    def test_update_post(self):
+        update_post_url = f'/blog/update-post/{self.post_003.pk}/'
+
+        # 로그인하지 않은 경우
+        response = self.client.get(update_post_url)
+        self.assertNotEqual(response.status_code, 200)
+
+        # 로그인은 했지만 작성자가 아닌 경우
+        self.assertNotEqual(self.post_003.author, self.user_abcd)
+        self.client.login(username='abcd', password='somepassword')
+        response = self.client.get(update_post_url)
+        self.assertEqual(response.status_code, 403)
